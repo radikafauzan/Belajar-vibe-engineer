@@ -1,0 +1,28 @@
+{
+  "name": "belajar-vibe-engineer",
+  "version": "1.0.0",
+  "description": "Backend project with Bun, Elysia, Drizzle ORM, and MySQL",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch run src/index.ts",
+    "start": "bun run src/index.ts",
+    "test": "bun test",
+    "build": "bun build src/index.ts --outdir dist --target bun",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.38.4",
+    "elysia": "^1.2.10",
+    "mysql2": "^3.12.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.10.7",
+    "drizzle-kit": "^0.30.2",
+    "typescript": "^5.7.3"
+  }
+}
