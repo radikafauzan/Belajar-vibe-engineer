@@ -1,9 +1,11 @@
 import { Elysia } from "elysia";
 import { checkDatabaseConnection } from "./db";
+import { usersRouter } from "./routes/users-router";
 
 const PORT = Number(process.env.PORT) || 3000;
 
 export const app = new Elysia()
+  .use(usersRouter)
   .get("/", () => ({
     name: "belajar-vibe-engineer",
     message: "Server backend Elysia & Drizzle ORM berjalan dengan sukses!",
