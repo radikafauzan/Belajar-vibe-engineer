@@ -26,6 +26,31 @@ export const usersRouter = new Elysia({ prefix: "/api" }).post(
       name: t.String({ minLength: 1, error: "Nama wajib diisi" }),
       email: t.String({ format: "email", error: "Format email tidak valid" }),
       password: t.String({ minLength: 1, error: "Password wajib diisi" }),
-    }),
   }
-);
+)
+  .post(
+    "/users/login",
+    async ({ body, set }) => {
+      const result = await UsersService.login({
+        email: body.email,
+        password: body.password,
+      });
+
+      if (!result.success) {
+        set.status = 400;
+        return {
+          error: result.error,
+        };
+      }
+
+      return {
+        data: result.data,
+      };
+    },
+    {
+      body: t.Object({
+        email: t.String({ format: "email", error: "Format email tidak valid" }),
+        password: t.String({ minLength: 1, error: "Password wajib diisi" }),
+      }),
+    }
+  );
